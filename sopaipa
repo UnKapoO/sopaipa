@@ -1,0 +1,152 @@
+Algoritmo sin_titulo
+	Definir opcion_menu1, opcion_menu2, cantidad Como Entero
+	Definir contador_completo, contador_sopaipa, contador_coca, pago_completo, pago_sopaipa, pago_coca Como Entero
+	Definir precio_completo, precio_sopaipa, precio_coca, total_pago, efectivo, vuelto, num_boleta Como Entero
+	Definir rut, nombre Como caracter
+	//Contadores//
+	contador_completo = 0
+	contador_sopaipa = 0
+	contador_coca = 0
+	//Boleta//
+	num_boleta = Aleatorio(10000,5000)
+	//Precios//
+	precio_completo = 1000
+	precio_sopaipa = 200
+	precio_coca = 500
+	
+	Repetir
+		Escribir "1 Agregar Productos"
+		Escribir "2. Mostrar carrito"
+		Escribir "3. Pagar"
+		Escribir "4. Salir"
+		Leer opcion_menu1
+		
+		Segun opcion_menu1 Hacer
+			1:
+				Repetir
+					Escribir "Agregar Productos"
+					Escribir "1. Completo Italiano"
+					Escribir "2. Sopaipilla"
+					Escribir "3. Coca-Cola"
+					Escribir "4. Volver"
+					Leer opcion_menu2
+					Segun opcion_menu2 Hacer
+						1:
+							Escribir "¿Cuantos ccompletos quieres?"
+							Leer cantidad				
+							si cantidad > 0 Entonces
+								contador_completo = contador_completo + cantidad
+								Escribir "Se agregaron ", contador_completo, " completos"
+							SiNo
+								Escribir "La cantidad debe ser mayor a 0"
+							FinSi 
+							
+						2:
+							Escribir "¿Cuantas sopaipillas quieres?"
+							Leer cantidad
+							si cantidad > 0 Entonces
+								Escribir "Se agregaron ", contador_sopaipa, " Sopaipa"
+								contador_sopaipa = contador_sopaipa + cantidad
+							SiNo
+								Escribir "La cantidad debe ser mayor a 0"
+							FinSi 
+						3:
+							Escribir "¿Cuantas Coca-Cola quieres?"
+							Leer cantidad
+							si cantidad > 0 Entonces
+								Escribir "Se agregaron ", contador_coca, " Coca-Cola"
+								contador_coca = contador_coca + cantidad
+							sino
+								Escribir "La cantidad debe ser mayor a 0"
+							FinSi
+						4: 
+							Escribir "Volviendo a menu principal"
+						De Otro Modo:
+							Escribir "La opcion ingresada no es valida"
+					Fin Segun
+				Hasta Que opcion_menu2 == 4
+			
+			2:
+				Escribir "Mostrar Carrito"
+				Escribir "__________________________________________________"
+				si contador_completo > 0 Entonces
+					pago_completo = contador_completo * precio_completo
+					Escribir "Completos: ", contador_completo, " X ", precio_completo, " = ", pago_completo
+					
+				FinSi
+				si contador_sopaipa > 0 Entonces
+					pago_sopaipa = contador_sopaipa * precio_sopaipa
+					Escribir "Sopaipilla: ", contador_sopaipa, " X ", precio_sopaipa, " = ", pago_sopaipa
+				FinSi
+				si contador_coca > 0 Entonces
+					pago_coca = contador_coca * precio_coca
+					Escribir "Coca-Cola: ", contador_coca, " X ", precio_coca, " = ", pago_coca
+				FinSi
+				total_pago = pago_completo + pago_sopaipa + pago_coca
+				Escribir "Total a Pagar= ", total_pago
+				
+			3:
+				Escribir "Pagar"
+				Escribir "__________________________________________________"
+				si contador_completo > 0 o contador_sopaipa > 0 o contador_coca > 0 Entonces
+					Repetir
+						Escribir "Ingrese su Rut"
+						Leer rut
+						
+						si rut <> "" Entonces
+							Escribir "Ingrese su Nombre"
+							Leer nombre
+							si nombre <> "" Entonces
+								Escribir "Su total a Pagar es: ", total_pago
+								Escribir "Ingrese Efectivo"
+								Leer efectivo
+								si efectivo >= total_pago Entonces
+									vuelto  = efectivo - total_pago
+									Escribir "Su vuelto es: ", vuelto
+									Escribir "Gracias popr su compra"
+									Escribir "_________________________________________"
+									Escribir "Detalle de Compra"
+									Escribir "Boleta Numero: ", num_boleta
+									si contador_completo > 0 Entonces
+										pago_completo = contador_completo * precio_completo
+										Escribir "Completos: ", contador_completo, " X ", precio_completo, " = ", pago_completo
+										
+									FinSi
+									si contador_sopaipa > 0 Entonces
+										pago_sopaipa = contador_sopaipa * precio_sopaipa
+										Escribir "Sopaipilla: ", contador_sopaipa, " X ", precio_sopaipa, " = ", pago_sopaipa
+									FinSi
+									si contador_coca > 0 Entonces
+										pago_coca = contador_coca * precio_coca
+										Escribir "Coca-Cola: ", contador_coca, " X ", precio_coca, " = ", pago_coca
+									FinSi
+									Escribir "_________________________________________"
+									total_pago = pago_completo + pago_sopaipa + pago_coca
+									Escribir "Total a Pagar= ", total_pago
+									Escribir "Efectivo: ", efectivo
+									Escribir "Vuelto: ", vuelto
+									Escribir "_________________________________________"
+								SiNo
+									Escribir "La cantidad de efectivo debe ser mayor al Total a pagar"
+								FinSi
+							SiNo
+								Escribir "Debe Ingresar su nombre"
+							FinSi
+						SiNo
+							Escribir "Debe ingresar su rut"
+						FinSi
+						
+
+					Hasta Que rut <> ""
+				SiNo
+					Escribir "Primero debes agregar productos al carrito :) "
+					
+				FinSi
+				
+			4: 
+				Escribir "Salir"
+		Fin Segun
+	Hasta Que opcion_menu1 == 4
+
+
+FinAlgoritmo
